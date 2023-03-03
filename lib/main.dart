@@ -44,7 +44,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         {'texto': 'Android', 'pontuacao': 8},
         {'texto': 'Motorola', 'pontuacao': 6},
         {'texto': 'Iphone', 'pontuacao': 10},
-        {'texto': 'Outras', 'pontuacao': 4},
+        {'texto': 'Outras', 'pontuacao': 1},
       ]
     },
     {
@@ -53,7 +53,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         {'texto': 'Nike', 'pontuacao': 10},
         {'texto': 'Adidas', 'pontuacao': 8},
         {'texto': 'Puma', 'pontuacao': 6},
-        {'texto': 'Outras', 'pontuacao': 4},
+        {'texto': 'Outras', 'pontuacao': 1},
       ]
     },
   ];
@@ -71,6 +71,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
     }
   }
 
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     //for (var textoResp in resposta) {
@@ -84,10 +91,16 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('_perguntas'),
-          ),
-          body: obj.temPergunta ? obj : const Resultado()),
+        appBar: AppBar(
+          title: const Text('_perguntas'),
+        ),
+        body: obj.temPergunta
+            ? obj
+            : Resultado(
+                _pontuacaoTotal,
+                _reiniciarQuestionario,
+              ),
+      ),
     );
   }
 }
