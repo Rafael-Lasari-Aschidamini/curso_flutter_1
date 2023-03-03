@@ -19,19 +19,42 @@ class PerguntaApp extends StatefulWidget {
 }
 
 class _PerguntaAppState extends State<PerguntaApp> {
+  // Questionario objetoQuestionario = Questionario(
+  //   perguntas: perguntas,
+  //   perguntaSelecionada: perguntaSelecionada,
+  //   responder: responder,
+  // );
+
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
+
   final List<Map<String, dynamic>> _perguntas = const [
     {
       'texto': 'Qual a sua cor favorita?',
-      'resposta': ['Verde', 'Branco', 'Amarelo', 'Azul']
+      'resposta': [
+        {'texto': 'Verde', 'pontuacao': 5},
+        {'texto': 'Branco', 'pontuacao': 8},
+        {'texto': 'Amarelo', 'pontuacao': 3},
+        {'texto': 'Azul', 'pontuacao': 10},
+      ]
     },
     {
       'texto': 'Qual o modelo de celular utiliza?',
-      'resposta': ['Android', 'Motorola', 'Iphone', 'Outras']
+      'resposta': [
+        {'texto': 'Android', 'pontuacao': 8},
+        {'texto': 'Motorola', 'pontuacao': 6},
+        {'texto': 'Iphone', 'pontuacao': 10},
+        {'texto': 'Outras', 'pontuacao': 4},
+      ]
     },
     {
       'texto': 'Qual a sua marca de tenis favorita?',
-      'resposta': ['Nike', 'Adidas', 'Puma', 'Outras']
+      'resposta': [
+        {'texto': 'Nike', 'pontuacao': 10},
+        {'texto': 'Adidas', 'pontuacao': 8},
+        {'texto': 'Puma', 'pontuacao': 6},
+        {'texto': 'Outras', 'pontuacao': 4},
+      ]
     },
   ];
 
@@ -39,10 +62,11 @@ class _PerguntaAppState extends State<PerguntaApp> {
     return _perguntaSelecionada < _perguntas.length;
   }
 
-  void _responder() {
+  void _responder(int pontuacao) {
     if (temPergunta) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
   }
