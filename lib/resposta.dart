@@ -1,5 +1,3 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class Resposta extends StatelessWidget {
@@ -9,7 +7,7 @@ class Resposta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -17,7 +15,7 @@ class Resposta extends StatelessWidget {
         ),
         onPressed: onSelecao,
         child: Text(texto,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             )),
       ),
