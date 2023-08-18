@@ -72,16 +72,26 @@ class _PerguntaAppState extends State<PerguntaApp> {
     final obj = Questionario(perguntas: _perguntas, perguntaSelecionada: _perguntaSelecionada, responder: _responder);
 
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.purple,
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.purpleAccent),
+      ),
       home: Scaffold(
+        backgroundColor: Colors.grey.shade400,
         appBar: AppBar(
-          title: const Text('_perguntas'),
+          title: const Text('Veplex'),
+          backgroundColor: Colors.purple,
         ),
-        body: obj.temPergunta
-            ? obj
-            : Resultado(
-                _pontuacaoTotal,
-                _reiniciarQuestionario,
-              ),
+        body: Column(
+          children: [
+            obj.temPergunta ? obj : Resultado(_pontuacaoTotal, _reiniciarQuestionario),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('assets/image/Logo.png'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_perguntas/questao.dart';
 import './resposta.dart';
@@ -23,13 +22,20 @@ class Questionario extends StatelessWidget {
   Widget build(BuildContext context) {
     var resposta = temPergunta ? (perguntas[perguntaSelecionada]['resposta']) as List : [];
 
-    return Column(
-      children: <Widget>[
-        Questao(perguntas[perguntaSelecionada]['texto'].toString()),
-        ...resposta.map((resp) {
-          return Resposta(resp['texto'].toString(), () => responder(int.parse(resp['pontuacao'].toString())));
-        })
-      ],
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Questao(perguntas[perguntaSelecionada]['texto'].toString()),
+              ...resposta.map((resp) {
+                return Resposta(resp['texto'].toString(), () => responder(int.parse(resp['pontuacao'].toString())));
+              })
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
